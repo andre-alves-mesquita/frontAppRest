@@ -2,6 +2,7 @@ import { Employee } from './../../employee';
 import { DataService } from './../../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-edit',
@@ -12,10 +13,14 @@ export class EmployeeEditComponent implements OnInit {
   id: any;
   data: any;
   employee = new Employee();
+
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
-  ) {}
+    private dataService: DataService,
+    private router: Router
+  ) {
+    this.router = router;
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
@@ -31,5 +36,6 @@ export class EmployeeEditComponent implements OnInit {
 
   updateEmployee() {
     this.dataService.updateData(this.id, this.employee).subscribe((res) => {});
+    this.router.navigate(['/']);
   }
 }

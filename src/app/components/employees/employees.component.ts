@@ -18,6 +18,10 @@ export class EmployeesComponent implements OnInit {
     this.getEmployeesData();
   }
 
+  ngAfterViewInit() {
+    this.getEmployeesData();
+  }
+
   getEmployeesData() {
     this.DataService.getData().subscribe((res) => {
       this.employees = res;
