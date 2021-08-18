@@ -1,3 +1,37 @@
+<form (ngSubmit)="insertData()">
+  <div class="form-group">
+    <label for="nome">Nome</label>
+    <input
+      type="text"
+      name="nome"
+      class="form-control"
+      [(ngModel)]="employee.nome"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="text"
+      name="email"
+      class="form-control"
+      [(ngModel)]="employee.email"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="salary">Salary</label>
+    <input
+      type="text"
+      name="salary"
+      class="form-control"
+      [(ngModel)]="employee.salary"
+    />
+  </div>
+
+  <button class="btn btn-dark btn-sm mt-4">submit</button>
+</form>
+
 <table class="table">
   <thead>
     <tr>
@@ -5,6 +39,7 @@
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Salary</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -13,6 +48,18 @@
       <td>{{ emp.nome }}</td>
       <td>{{ emp.email }}</td>
       <td>{{ emp.salary }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="deleteData(emp.id)">
+          Delete
+        </button>
+
+        <button
+          class="btn btn-warning btn-sm mx-2"
+          routerLink="edit/{{ emp.id }}"
+        >
+          Edit
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
